@@ -1,0 +1,37 @@
+*title Testing
+*author Christopher Brown
+
+*scene_list
+  one
+  two
+  three
+    
+*choice
+  #You deicede. You'd rather have a monkey. pir
+  *choice
+    #Make Magic money.
+  *choice
+    #Take a break bunny face. You sre dead. Wel
+    
+    #You are now ${lost} 2 7 in side ${9_iujeljk}.
+
+    #Hello  
+    
+      *if yu ${strength} > 30
+      You marvel at the sound.
+      *else
+      You accomplish nothing
+        *finish
+      Some other stuff and things
+      *finish
+
+      *label grumpy
+      *goto humpty
+
+       Your ${strength} is >
+
+       =
+= ansd > later != >> >>>D>S>>>
+
+*input_text junk
+*page_break
