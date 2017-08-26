@@ -30,7 +30,8 @@
 ;;; Code:
 
 (require 'sws-mode)
- 
+(visual-line-mode)
+
 (defadvice choice-do-indent-line (around choice-indent-blank () activate)
   "Ensure proper identification of blank lines"
   (if (and (eq major-mode 'choice-mode) (sws-empty-line-p))
@@ -47,16 +48,17 @@
 (defconst choice-font-lock-keywords
   `(
     ("[<|>|=|!=]" . font-lock-variable-name-face)
-    ("^\*title [a-z|A-Z| ]*\n" . 'font-lock-type-face)
-    ("^*author [a-z|A-Z| ]*\n" . 'font-lock-type-face)
-    ("^*scene_list\n" . 'font-lock-type-face)
+    ("\*title [^\n\r]*\n" . 'font-lock-type-face)
+    ("\*author [^\n\r]*\n" . 'font-lock-type-face)
+    ("\*scene_list\n" . 'font-lock-type-face)
     ("\*choice\n" . font-lock-keyword-face)
+    ("\*fake_choice\n" . font-lock-keyword-face)
     ("\*comment .*" . font-lock-comment-face)
-    ("^\*create .*". font-lock-variable-name-face)
-    ("^*set .*". font-lock-variable-name-face)
-    ("^*temp .*" . font-lock-variable-name-face)
+    ("\*create .*". font-lock-variable-name-face)
+    ("\*set .*". font-lock-variable-name-face)
+    ("\*temp .*" . font-lock-variable-name-face)
     ("\$[\{|\\a-z|\\0-9|\\_|\}]*" . font-lock-variable-name-face)
-    ("^\*page_break\n" . font-lock-warning-face)
+    ("\*page_break\n" . font-lock-warning-face)
     ("\*if" . font-lock-function-name-face)
     ("\*else" . font-lock-function-name-face)
     ("\*finish" . font-lock-function-name-face)
