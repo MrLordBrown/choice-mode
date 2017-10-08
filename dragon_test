@@ -22,7 +22,7 @@
 *create gender "unknown"
 
 *comment I've added wounds and blasphemy to provide hit points of sorts;
-*comment if the PC gets hurt, wounds goes up, with 3 usually meaning death;
+*comment if the PC gets hurt, wounds goes up, with 3 usually meaning death ;
 *comment impiety tracks whether the gods have been directly angered
 *create wounds 0
 *create blasphemy 0
@@ -112,7 +112,7 @@ How do you defend yourself, O mighty dragon?
     *goto Victory
  
   #I rush into his charge and tear him to pieces with my claws.
-    The knight's lance shatters against your nigh-impenetrable hide as you slam into him.  You yank him clean off his horse, slamming him to the ground and ripping his plate armor with your vicious claws.  The fight is over before it has begun. 
+  The knight's lance shatters against your nigh-impenetrable hide as you slam into him.  You yank him clean off his horse, slamming him to the ground and ripping his plate armor with your vicious claws.  The fight is over before it has begun. 
 
     *set brutality %+10
     *goto Victory
@@ -200,13 +200,13 @@ Will you be male or female?
         *set gender "unknown"
         *goto Princess
     #Do not pester me with impudent questions!
-        *set brutality %+ 15
+        *set brutality %+15
         I, ah, I mean, yes!  Of course!  How churlish of me.
         
         But, O mighty ${name}, I feel I should let you know that this game is full of choices; indeed, it is nothing but multiple choice questions that determine the course of your adventures as a dragon.  If you don't enjoy answering questions, this game may not be for you!
         
         Do youâ€¦I mean, if I may, would you like to specify your gender after all?
-        
+     #fire   
         *choice
             #Very well.
                 Excellent choice!  What gender will you be?
@@ -232,9 +232,10 @@ Will you be male or female?
        
 *label Princess
 
-As you think about it, the knight's attack was probably inevitable.  After all, you did just kidnap the princess from right out of her tower.  Althoughâ€¦
+As you think about it, the knight's attack was probably inevitable.  After all, you did just kidnap the princess from right out of her tower.  Although
 
 Isn't it a little sexist to always kidnap princesses?
+
 *temp royal
 *choice
   #Maybe, but tradition demands that dragons kidnap princesses, even if that is sexist.
@@ -288,7 +289,7 @@ Ah, would you like to specify the color of your hide?  I wasn't sure which color
 *temp color
 *choice
     #Can we just get on to the smashing?
-        *set brutality %+ 30
+        *set brutality %+30
         Yâ€”yes, of course!  Your wish is my command.
         
         On with the show!
@@ -371,7 +372,7 @@ What are you planning on doing with the ${royal}, anyway?
 
     But what do you do after you tire of ${royal_his} conversation?
     *choice
-      #Then it's time for a royal feastâ€”by which I mean I eat ${royal_him}.
+      #Then it's time for a royal feast by which I mean I eat ${royal_him}.
         The ${royal}'s efforts to entertain you with ${royal_his} stories, harp-playing, and singing become more desperate as your boredom becomes more apparent.  But even ${royal_his} best efforts are not enough, and you devour ${royal_him} without remorse.
 
         *set brutality %+10
@@ -551,21 +552,21 @@ One of your elder clutchmates was an overbearing brute named Axilmeus.  Axilmeus
 
 *choice
   # I gave him the shield to avoid a fight.
-    *set disdain %+ 15
+    *set disdain %+15
     Disdain increases.
     
     Axilmeus took your shield and beat you with it, hard.
     *goto ResolveAxilmeus
   # I dueled him for the shield.
-    *set brutality %+ 15
-    *set cunning %- 15
+    *set brutality %+15
+    *set cunning %-15
     Brutality and Honor increase.
     
     You fought your hardest, but Axilmeus was a bit stronger than you; he pinned you to the ground and pried the shield out of your claws.
     *goto ResolveAxilmeus
   # I evaded him and hid the shield.
-    *set brutality %- 15
-    *set cunning %+ 15
+    *set brutality %-15
+    *set cunning %+15
     Cunning and Finesse increase.
   
     Unfortunately, Axilmeus is your elder; at this age, he has the advantage in maneuverability.  He caught up to you quickly, pinning you to the ground and prying the shield out of your claws.

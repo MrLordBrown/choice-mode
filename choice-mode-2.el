@@ -2,7 +2,7 @@
 ;; Copyright © 2017, by Christopher R. Brown
 
 ;; Author: Christopher R. Brown ( mrlordvondoombraun@gmail.com )
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Created: 21 AUG 2017
 ;; Keywords: major-mode, ChoiceScript, interactive fiction, adventure text
 ;; Homepage: teamawesome3.dlinkddns.com
@@ -38,14 +38,14 @@
 	   )
       (if (save-excursion
 	    (previous-line)
-	    (looking-at "^\*[a-z]*\n")
+	    (looking-at "\\(^*[a-z]*\n\\)")
 	    )
 	  (indent-to (sws-max-indent)
 		     )
 	(indent-to (sws-previous-indentation)
 		   )
 	)
-    ad-do-it)
+    and-do-it)
   )
 
 (defvar choice-mode-syntax-table
@@ -62,14 +62,12 @@
 
 (defconst choice-font-lock-keywords
   `(
-    ("\*title [^\n\r]*\n" . 'font-lock-type-face)
-    ("\*author [^\n\r]*\n" . 'font-lock-type-face)
-    ("\*scene_list\n" . 'font-lock-type-face)
-    ("\*choice\n" . 'font-lock-keyword-face)
-    ("\*fake_choice\n" . 'font-lock-keyword-face)
-    ("\%[\-|\+][0-9]+" . 'font-lock-builtin-face)
+    ("\\(*\\)\\(title\\|author\\)\\(.\\)+\\(\n\\)" . font-lock-builtin-face)
+    ("\\(*choice\n\\)" . 'font-lock-keyword-face)
+    ("\\(*fake_choice\n\\)" . 'font-lock-keyword-face)
+    ("\\(%\\)\\([-\\|+]\\)\\([0-9]+\\)" . 'font-lock-builtin-face)
     ("[\-|\+][0-9]+" . 'font-lock-builtin-face)
-    ("\$[\{|\\a-z|\\A-Z|\\0-9|\\_|\\!\}]*" . 'font-lock-variable-name-face)
+    ("\\($\\)\\([{\\|a-z\\|A-Z\\|0-9\\|_\\|!}]*\\)" . 'font-lock-variable-name-face)
     ("\#[^\n\r]+" . 'font-lock-type-face)
     ("\#.\n\t.*" . 'font-lock-type-face)
     ("\#.* [\\{|\\}]*" . 'font-lock-type-face)
@@ -102,10 +100,7 @@
   (setq mode-name "ChoiceScript Mode")
   (setq font-lock-defaults
 	'(
-	  (choice-font-lock-keywords)
-	  )
-	)
-  )
+	  (choice-font-lock-keywords t))))
 
 (provide 'choice-mode)
 

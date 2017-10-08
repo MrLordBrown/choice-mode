@@ -60,11 +60,38 @@
 (defvar choice-font-lock-keywords nil
   "set element for font-lock-defaults")
 
+(defun choice-scene-list-font-lock-extend-region ()
+  (save-excursion
+    (goto-char font-lock-beg)
+    (let (
+	  (found-point
+	   (re-search-backward "\\(^*scene_list\n\\)" nil t)
+	   )
+	  )
+      (if found-point
+	  (progn
+	    (goto-char font-lock-end)
+	    (if
+		(re-search-forward "\\(\n\n\\)" nil t)
+		(progn
+		  (beginning-of-line)
+		  (setq font-lock-end
+			(point)
+			)
+		  )
+	      )
+	    (setq font-lock-beg found-point)
+	    )
+	)
+      )
+    )
+  )
+
+(defconst choice-font-lock-scene-list
+  
 (defconst choice-font-lock-keywords
   `(
-    ("\*title [^\n\r]*\n" . 'font-lock-type-face)
-    ("\*author [^\n\r]*\n" . 'font-lock-type-face)
-    ("\*scene_list\n" . 'font-lock-type-face)
+    ("\\(*\\)\\(title\\|author\\)\\(.\\)+\\(\n\\)" . font-lock-builtin-face)
     ("\*choice\n" . 'font-lock-keyword-face)
     ("\*fake_choice\n" . 'font-lock-keyword-face)
     ("\%[\-|\+][0-9]+" . 'font-lock-builtin-face)
@@ -102,10 +129,13 @@
   (setq mode-name "ChoiceScript Mode")
   (setq font-lock-defaults
 	'(
-	  (choice-font-lock-keywords)
+	  (choice-font-lock-keywords t)
 	  )
 	)
-  )
+  (make-local-variable 'font-lock-extend-region-functions)
+	(add-hook 'font-lock-extend-region-functions
+		  'choice-scene-list-font-lock-extend-region)
+	)
 
 (provide 'choice-mode)
 
